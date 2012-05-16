@@ -30,3 +30,16 @@ _This will remove the database, and then initialize with the most basic values r
 _Run the unit tests._
 
 	python tests.py
+
+###References
+
+####Framework
+* http://flask.pocoo.org/docs/
+* http://jinja.pocoo.org/docs/
+
+####Javascript Libraries
+* http://twitter.github.com/bootstrap/
+* http://documentcloud.github.com/backbone/
+* http://docs.jquery.com/Main_Page
+* http://documentcloud.github.com/underscore/
+
