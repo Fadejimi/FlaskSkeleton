@@ -27,6 +27,6 @@ _This will remove the database, and then initialize with the most basic values r
 
 ###Unit Testing
 
-_Run the unit tests.
+_Run the unit tests._
 
 	python tests.py
