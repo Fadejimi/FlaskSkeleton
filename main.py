@@ -51,19 +51,30 @@ def before_request():
 def teardown_request(exception):
     g.db.close()
 
+@app.route("/category/<category>")
+def category(category):
+    data = {}
+    data["categories"] = query_db("select * from categories")
+    data["messages"] = query_db("select *, name as category_name from messages inner join categories on messages.category == categories.id where category == ?", [category])
+    
+    # Uncomment to see the json output instead of the html rendering.
+    # return Response(json.dumps(data), mimetype="application/json")
+    return render_template("category.html", data=data)
+
 @app.route("/")
 def index():
     data = {}
-    data["messages"] = query_db("select * from messages")
-
+    data["categories"] = query_db("select * from categories")
+    data["messages"] = query_db("select *, name as category_name from messages inner join categories on messages.category == categories.id")
+    
     # Uncomment to see the json output instead of the html rendering.
     # return Response(json.dumps(data), mimetype="application/json")
     return render_template("home.html", data=data)
-
+    
 @app.route("/addmessage", methods=["POST"])
 def add_message():
     db = connect_db()
-    db.execute("insert into messages (title, body) values(?, ?)", [request.form["title"], request.form["message"]])
+    db.execute("insert into messages (category, title, body) values(?, ?, ?)", [request.form["category"], request.form["title"], request.form["message"]])
     db.commit()
     db.close()
 

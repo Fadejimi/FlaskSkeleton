@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block main %}
+	{% for message in data.messages %}
+		<h2 class="message-category">{{ message.category_name }}</h3>
+		<h3 class="message-header">{{ message.title }}</h3>
+		<p class="message-body">{{ message.body }}</p>
+	{% endfor %}
+{% endblock %}

@@ -3,13 +3,26 @@
         <div class="container">
             <div class="nav-collapse">
                 <ul class="nav">
-                    {% if request.path == "/" %}
-                        <li class="active"><a href="/">Home</a></li>
-                    {% else %}
-                        <li><a href="/">Home</a></li>
-                    {% endif %}
+                {% if request.path == "/" %}
+                    <li class="active"><a class="brand"href="/">Message Board</a></li>
+                {% else %}
+                    <li><a class="brand" href="/">Message Board</a></li>
+                {% endif %}
                 </ul>
-            </div><!--/.nav-collapse -->
+                <ul class="nav">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#menu1">
+                          Categories
+                          <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                        {% for category in data.categories %}
+                            <li><a href="/category/{{ category.id }}">{{ category.name }}</a></li>
+                        {% endfor %}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

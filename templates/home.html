@@ -2,16 +2,27 @@
 
 {% block main %}
 	{% for message in data.messages %}
-		<h3>{{ message.title }}</h3>
-		<p>{{ message.body }}</p>
+		<h2 class="message-category">{{ message.category_name }}</h3>
+		<h3 class="message-header">{{ message.title }}</h3>
+		<p class="message-body">{{ message.body }}</p>
 	{% endfor %}
 	<form class="form-inline" action="{{ url_for('add_message') }}" method=post>
 		<div class="control-group">
 			<div class="form-actions">
-				<label class="control-label">Title</label>
+				<label class="control-label">Category:</label>
+				<div class="controls">
+				  	<select name="category">
+					  	{% for category in data.categories %}
+							<option value="{{ category.id }}">{{ category.name }}</option>
+						{% endfor %}
+					</select>
+				</div>
+				<br />
+				<label class="control-label">Title:</label>
 	       		<div class="controls">
 	            	<input type="text" class="input-xlarge" name="title">
 	        	</div>
+				<br />
 		    	<label class="control-label">Message:</label>
 		    	<div class="controls">
 					<textarea class="input-xlarge" name="message" rows="3"></textarea>
