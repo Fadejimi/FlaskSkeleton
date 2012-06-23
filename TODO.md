@@ -10,3 +10,4 @@ A test app to show how to use Flask and Python for web development.
 ### Tasks ###
 
 * Add login support.
+* Replace the installation/initialization scripts.
